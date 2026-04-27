@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rita Ferreira da Silva — Advogada</title>
+<link rel="icon" type="image/png" href="logorfs.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --wine: #6B0823;
+    --wine-deep: #3A0214;
+    --wine-mid: #7E0429;
+    --wine-light: rgba(107,8,35,0.08);
+    --gold: #C4A96D;
+    --gold-light: #E8D9B5;
+    --white: #FFFFFF;
+    --off-white: #F8F5F0;
+    --black: #0A0A0A;
+    --dark: #1A1A1A;
+    --gray: #888;
+    --light-gray: #E8E4DE;
+    --font-heading: 'Playfair Display', Georgia, serif;
+    --font-body: 'Cormorant Garamond', Georgia, serif;
+    --font-ui: 'Montserrat', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--dark);
+    background: var(--white);
+    overflow-x: hidden;
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(10,2,8,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(196,169,109,0.2);
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+    transition: background 0.3s;
+  }
+
+  .logo img {
+    height: 60px;
+    width: auto;
+    display: block;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 1.5px;
+    background: var(--white);
+    transition: all 0.3s;
+  }
+
+  /* ─── HERO ─── */
+  #home {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--wine-deep);
+  }
+
+  .hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.35;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(58,2,20,0.5) 0%,
+      rgba(58,2,20,0.3) 50%,
+      rgba(58,2,20,0.8) 100%
+    );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 5%;
+    max-width: 900px;
+  }
+
+  .hero-rule {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .hero-rule::before, .hero-rule::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-rule span {
+    font-family: var(--font-ui);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .hero-heading {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 28px;
+  }
+
+  .hero-heading em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-tags {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .hero-tag {
+    font-family: var(--font-ui);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    padding: 6px 18px;
+    border: 1px solid rgba(196,169,109,0.3);
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    animation: bounce 2s infinite;
+  }
+
+  .scroll-indicator span {
+    font-family: var(--font-ui);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .scroll-indicator svg { opacity: 0.4; }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* ─── SECTIONS SHARED ─── */
+  section { position: relative; }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+  }
+
+  .section-label {
+    font-family: var(--font-ui);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--wine);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--dark);
+  }
+
+  .section-title.light { color: var(--white); }
+
+  .divider {
+    width: 60px;
+    height: 2px;
+    background: var(--wine);
+    margin: 24px 0;
+  }
+
+  .divider.gold { background: var(--gold); }
+  .divider.center { margin-left: auto; margin-right: auto; }
+
+  /* ─── SOBRE ─── */
+  #sobre {
+    padding: 120px 0;
+    background: var(--white);
+  }
+
+  .sobre-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .sobre-img-wrap {
+    position: relative;
+  }
+
+  .sobre-img-wrap::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: 20px;
+    bottom: 20px;
+    border: 1px solid var(--wine);
+    z-index: 0;
+  }
+
+  .sobre-img-wrap img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 680px;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  .sobre-text { }
+
+  .sobre-quote {
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    font-style: italic;
+    color: var(--dark);
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+
+  .sobre-body {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    color: #444;
+    line-height: 1.8;
+    margin-bottom: 28px;
+  }
+
+  .sobre-sub {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 16px;
+    margin-top: 36px;
+  }
+
+  /* ─── ABORDAGEM ─── */
+  #abordagem {
+    padding: 100px 0;
+    background: var(--wine-deep);
+  }
+
+  .abordagem-header {
+    text-align: center;
+    margin-bottom: 72px;
+  }
+
+  .abordagem-header .section-label { color: var(--gold); }
+
+  .abordagem-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .abordagem-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(196,169,109,0.15);
+    padding: 48px 36px;
+    position: relative;
+    transition: background 0.3s;
+  }
+
+  .abordagem-card:hover {
+    background: rgba(196,169,109,0.06);
+  }
+
+  .abordagem-card .icon {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 28px;
+    opacity: 0.9;
+  }
+
+  .abordagem-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+
+  .abordagem-card p {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.8;
+  }
+
+  /* ─── ÁREAS ─── */
+  #areas {
+    padding: 120px 0;
+    background: var(--off-white);
+  }
+
+  .areas-header {
+    text-align: center;
+    margin-bottom: 72px;
+  }
+
+  .areas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .area-card {
+    background: var(--white);
+    border-top: 3px solid var(--wine);
+    padding: 44px 36px;
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .area-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(107,8,35,0.12);
+  }
+
+  .area-icon {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .area-icon img {
+    width: 56px;
+    height: 56px;
+    /* invert black icons to wine color */
+    filter: invert(8%) sepia(90%) saturate(2500%) hue-rotate(320deg) brightness(80%);
+  }
+
+  .area-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 16px;
+  }
+
+  .area-card p {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.8;
+  }
+
+  /* ─── ONLINE ─── */
+  #online {
+    padding: 120px 0;
+    background: var(--white);
+  }
+
+  .online-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .online-text h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 400;
+    color: var(--dark);
+    line-height: 1.25;
+    margin-bottom: 24px;
+  }
+
+  .online-text p {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 40px;
+  }
+
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .step {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    background: var(--wine);
+    color: var(--white);
+    font-family: var(--font-ui);
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .step-text strong {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--wine);
+    margin-bottom: 4px;
+  }
+
+  .step-text span {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: #666;
+  }
+
+  .cta-block {
+    margin-top: 48px;
+    padding-top: 40px;
+    border-top: 1px solid var(--light-gray);
+  }
+
+  .cta-block .section-label {
+    margin-bottom: 12px;
+  }
+
+  .cta-heading {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 20px;
+  }
+
+  .btn-call {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--wine);
+    color: var(--white);
+    text-decoration: none;
+    padding: 14px 32px;
+    font-family: var(--font-ui);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn-call:hover {
+    background: var(--wine-mid);
+    transform: translateX(3px);
+  }
+
+  .btn-call svg { flex-shrink: 0; }
+
+  .online-schedule {
+    background: var(--off-white);
+    padding: 48px;
+    border-left: 4px solid var(--wine);
+  }
+
+  .online-schedule h3 {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 32px;
+  }
+
+  /* ─── FORM ─── */
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    display: block;
+    font-family: var(--font-ui);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 8px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    background: var(--white);
+    border: 1px solid var(--light-gray);
+    border-bottom: 1px solid #bbb;
+    padding: 12px 16px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--dark);
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+    border-radius: 0;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: var(--wine);
+  }
+
+  .form-group textarea { min-height: 120px; resize: vertical; }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .btn-submit {
+    width: 100%;
+    background: var(--wine);
+    color: var(--white);
+    border: none;
+    padding: 14px;
+    font-family: var(--font-ui);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 8px;
+  }
+
+  .btn-submit:hover { background: var(--wine-mid); }
+
+  .form-success {
+    display: none;
+    color: #2a8a2a;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    padding: 12px 0;
+  }
+
+  /* ─── CONTACTO ─── */
+  #contacto {
+    padding: 0;
+    min-height: 500px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contacto-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('ChatGPT Image 4_03_2026, 19_20_15.png');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.3) saturate(0.5);
+  }
+
+  .contacto-inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 500px;
+  }
+
+  .contacto-info {
+    padding: 80px 8% 80px 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .contacto-info .section-label { color: var(--gold); }
+  .contacto-info .section-title { color: var(--white); margin-bottom: 40px; }
+  .contacto-info .divider { background: var(--gold); }
+
+  .contacto-detail {
+    margin-bottom: 24px;
+  }
+
+  .contacto-detail .label {
+    font-family: var(--font-ui);
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .contacto-detail a,
+  .contacto-detail p {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    line-height: 1.6;
+    display: block;
+  }
+
+  .contacto-detail a:hover { color: var(--gold); }
+
+  .contacto-form-panel {
+    background: var(--white);
+    padding: 72px 8% 72px 6%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .contacto-form-panel h3 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: var(--dark);
+    margin-bottom: 32px;
+  }
+
+  /* ─── MAP ─── */
+  .map-wrap {
+    width: 100%;
+    height: 320px;
+    border: none;
+    display: block;
+    filter: grayscale(0.5) contrast(1.05);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--black);
+    padding: 32px 5%;
+    text-align: center;
+    border-top: 1px solid rgba(196,169,109,0.2);
+  }
+
+  footer p {
+    font-family: var(--font-ui);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+  }
+
+  /* ─── MOBILE MENU ─── */
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 72px; left: 0; right: 0;
+    background: rgba(10,2,8,0.98);
+    z-index: 999;
+    padding: 32px 5%;
+    flex-direction: column;
+    gap: 28px;
+    border-bottom: 1px solid rgba(196,169,109,0.2);
+  }
+
+  .mobile-nav.open { display: flex; }
+
+  .mobile-nav a {
+    font-family: var(--font-ui);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .sobre-grid,
+    .online-grid,
+    .contacto-inner {
+      grid-template-columns: 1fr;
+    }
+
+    .sobre-img-wrap {
+      order: -1;
+    }
+
+    .sobre-img-wrap img {
+      height: 420px;
+    }
+
+    .sobre-img-wrap::before {
+      display: none;
+    }
+
+    .abordagem-cards {
+      grid-template-columns: 1fr;
+    }
+
+    .areas-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .contacto-info {
+      padding: 60px 5%;
+    }
+
+    .contacto-form-panel {
+      padding: 60px 5%;
+    }
+
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+  }
+
+  @media (max-width: 600px) {
+    .hero-heading { font-size: 1.8rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .online-schedule { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#home" class="logo">
+    <img src="NEGATIVE (2).png" alt="Rita Ferreira da Silva — Advogada" style="width: 120px; height: auto;">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#areas">Áreas de Atuação</a></li>
+    <li><a href="#online">Advogado Online</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="#home" onclick="closeMobile()">Home</a>
+  <a href="#sobre" onclick="closeMobile()">Sobre</a>
+  <a href="#areas" onclick="closeMobile()">Áreas de Atuação</a>
+  <a href="#online" onclick="closeMobile()">Advogado Online</a>
+  <a href="#contacto" onclick="closeMobile()">Contacto</a>
+</div>
+
+<!-- HERO -->
+<section id="home">
+  <video class="hero-video" autoplay muted loop playsinline
+    src="VFX_3.mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-rule"><span>Advogada</span></div>
+    <h1 class="hero-heading">
+      Soluções jurídicas sólidas para<br>
+      <em>proteger o que mais importa:</em><br>
+      a sua família e os seus negócios
+    </h1>
+    <div class="hero-tags">
+      <span class="hero-tag">Direito Civil</span>
+      <span class="hero-tag">Direito da Família e Sucessório</span>
+      <span class="hero-tag">Direito Comercial</span>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 1v14M2 10l6 6 6-6" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="container">
+    <div class="sobre-grid">
+      <div class="sobre-img-wrap fade-up">
+        <img
+          src="img4_edited.jpg"
+          alt="Rita Ferreira da Silva — Advogada"
+        >
+      </div>
+      <div class="sobre-text fade-up">
+        <p class="section-label">Sobre</p>
+        <h2 class="section-title">Rita Ferreira da Silva</h2>
+        <div class="divider"></div>
+        <p class="sobre-quote">
+          "Acredito que o Direito é, acima de tudo, uma ferramenta para pacificar relações e garantir a segurança jurídica necessária para que pessoas e empresas prosperem."
+        </p>
+        <p class="sobre-body">
+          Com atuação dedicada às áreas de Direito Civil, Família, Sucessões e Comercial, o meu trabalho é pautado pela escuta ativa, pelo sigilo rigoroso e pela busca incessante pela solução mais estratégica para cada cliente.
+        </p>
+        <h3 class="sobre-sub">Trajetória e Compromisso</h3>
+        <p class="sobre-body">
+          Licenciada em Direito e devidamente inscrita na Ordem dos Advogados, construí a minha carreira focada na resolução de questões complexas que envolvem tanto o património empresarial quanto os laços mais sensíveis do âmbito familiar.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABORDAGEM -->
+<section id="abordagem">
+  <div class="container">
+    <div class="abordagem-header fade-up">
+      <p class="section-label">Método</p>
+      <h2 class="section-title light">A Minha Abordagem</h2>
+      <div class="divider gold center"></div>
+    </div>
+    <div class="abordagem-cards">
+      <div class="abordagem-card fade-up">
+        <img class="icon"
+          src="418c0d_9e411400f7e44b16b67d306bfdf08cef~mv2 2.png"
+          alt="Humanização">
+        <h3>Humanização</h3>
+        <p>No Direito de Família e Sucessões, entendo que por trás de cada processo existe uma história de vida. Por isso, priorizo métodos de resolução que minimizem o desgaste emocional.</p>
+      </div>
+      <div class="abordagem-card fade-up">
+        <img class="icon"
+          src="418c0d_05bfa05216fe441190ef206b59c63547~mv2 2.png"
+          alt="Transparência">
+        <h3>Transparência</h3>
+        <p>Acredito numa comunicação clara e direta, onde o cliente compreende cada etapa do seu processo de acordo com o Código de Ética e Deontologia Profissional.</p>
+      </div>
+      <div class="abordagem-card fade-up">
+        <img class="icon"
+          src="418c0d_e88e6086c365400d99831fac3d7285f8~mv2 2.png"
+          alt="Visão Estratégica">
+        <h3>Visão Estratégica</h3>
+        <p>No Direito Comercial e Civil, atuo como uma parceira de negócios, focando na prevenção de litígios e na elaboração de contratos blindados.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ÁREAS DE ATUAÇÃO -->
+<section id="areas">
+  <div class="container">
+    <div class="areas-header fade-up">
+      <p class="section-label">Especialização</p>
+      <h2 class="section-title">Áreas de Atuação</h2>
+      <div class="divider center"></div>
+    </div>
+    <div class="areas-grid">
+      <div class="area-card fade-up">
+        <div class="area-icon">
+          <svg width="56" height="56" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="#6B0823">
+            <path d="M107.6 35.4c0-4.2-3.4-7.6-7.6-7.6s-7.6 3.4-7.6 7.6c0 3.2 2 6 4.9 7.1v116.4H71.7v8.2h56.6v-8.2h-25.6V42.5c2.9-1.1 4.9-3.9 4.9-7.1zm-51.7 51L38.5 50.7 21 86.4h34.9zM38.5 38.5L11.3 94.6h54.5L38.5 38.5zm0 63.7c-17.2 0-31.1-3.8-31.1-8.6h62.2c0 4.8-13.9 8.6-31.1 8.6zm122.2-15.8L143.2 50.7l-17.5 35.7H160.7zM143.2 38.5l-27.2 56.1h54.5l-27.3-56.1zm0 63.7c-17.2 0-31.1-3.8-31.1-8.6h62.2c0 4.8-13.9 8.6-31.1 8.6z"/>
+          </svg>
+        </div>
+        <h3>Direito Civil</h3>
+        <p>Proteção de direitos e resolução de conflitos em relações privadas. Consultoria em contratos, responsabilidade civil, direitos reais e contencioso cível.</p>
+      </div>
+
+      <div class="area-card fade-up">
+        <div class="area-icon">
+          <svg width="56" height="56" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="#6B0823">
+            <path d="M100 200C44.9 200 0 155.1 0 100S44.9 0 100 0s100 44.9 100 100-44.9 100-100 100zm0-196.9C46.6 3.1 3.1 46.6 3.1 100s43.5 96.9 96.9 96.9 96.9-43.5 96.9-96.9S153.4 3.1 100 3.1z"/>
+            <path d="M100 132l-1.15-1.05C80.2 114.8 70 104.4 70 93.5 70 83.1 78.4 81 87.5 81c6.1 0 12.1 3.2 12.5 8.2.4-5 6.4-8.2 12.5-8.2 9.1 0 17.5 2.1 17.5 12.5 0 10.9-10.2 21.3-28.85 37.45L100 132z"/>
+          </svg>
+        </div>
+        <h3>Direito da Família e Sucessório</h3>
+        <p>Apoio jurídico humanizado em momentos de transição. Atuação em divórcios, regulação de responsabilidades parentais, partilhas de bens, inventários e planeamento sucessório.</p>
+      </div>
+
+      <div class="area-card fade-up">
+        <div class="area-icon">
+          <svg width="56" height="56" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="#6B0823">
+            <path d="M135.4 73h-20.1v-2.2c0-4.7-3.9-8.6-8.6-8.6H93.3c-4.7 0-8.6 3.9-8.6 8.6V73H64.6c-4.6 0-8.4 3.8-8.4 8.4v19l1.1.3c.1 0 1.4.4 3.6 1.1v28.5c0 4.6 3.8 8.4 8.4 8.4h61.3c4.6 0 8.4-3.8 8.4-8.4v-28.5c2.2-.6 3.6-1.1 3.6-1.1l1.1-.3v-19c.1-4.6-3.7-8.4-8.3-8.4zm-47.6-2.2c0-3 2.5-5.5 5.5-5.5h13.4c3 0 5.5 2.5 5.5 5.5V73H87.8v-2.2zm48.2 59.6c0 2.9-2.4 5.3-5.3 5.3H69.3c-2.9 0-5.3-2.4-5.3-5.3v-27.7c6.8 1.9 17.5 4.8 26.1 6.4v1.7c0 2.6 2.1 4.7 4.7 4.7h10.4c2.6 0 4.7-2.1 4.7-4.7v-1.7c8.6-1.6 19.3-4.5 26.1-6.4v27.7zm-42.8-19.6v-6.4c0-.9.7-1.6 1.6-1.6h10.4c.9 0 1.6.7 1.6 1.6v6.4c0 .9-.7 1.6-1.6 1.6H94.8c-.9.1-1.6-.7-1.6-1.6zm47.5-12.6c-4.1 1.2-19.3 5.7-30.8 7.8v-1.5c0-2.6-2.1-4.7-4.7-4.7H94.8c-2.6 0-4.7 2.1-4.7 4.7v1.5c-11.5-2.2-26.7-6.6-30.8-7.8V81.4c0-2.9 2.4-5.3 5.3-5.3h70.7c2.9 0 5.3 2.4 5.3 5.3v16.8zM100 200C44.9 200 0 155.1 0 100S44.9 0 100 0s100 44.9 100 100-44.9 100-100 100zm0-196.9C46.6 3.1 3.1 46.6 3.1 100s43.5 96.9 96.9 96.9 96.9-43.5 96.9-96.9S153.4 3.1 100 3.1z"/>
+          </svg>
+        </div>
+        <h3>Direito Comercial</h3>
+        <p>Suporte estratégico para o crescimento seguro da sua empresa. Elaboração de contratos comerciais, constituição de sociedades e assessoria jurídica em negócios empresariais.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADVOGADO ONLINE -->
+<section id="online">
+  <div class="container">
+    <div class="online-grid">
+      <div class="online-text fade-up">
+        <p class="section-label">Consulta Online</p>
+        <h2>Advogado Online:<br>Fale Hoje,<br>Sem Sair de Casa</h2>
+        <div class="divider"></div>
+        <p>Tem um problema legal e precisa de orientação? Adiar a resolução de um problema jurídico só aumenta os riscos e pode comprometer os seus direitos. Estou pronta para analisar a sua situação com clareza e rigor.</p>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">01</div>
+            <div class="step-text">
+              <strong>Marque a sua consulta</strong>
+              <span>Escolha o horário mais conveniente.</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <div class="step-text">
+              <strong>Converse com uma advogada</strong>
+              <span>Por videochamada, com total confidencialidade.</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <div class="step-text">
+              <strong>Receba apoio jurídico claro e seguro</strong>
+              <span>Sem surpresas nem complicações.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cta-block">
+          <p class="section-label">Contacto Directo</p>
+          <p class="cta-heading">Agende uma Consulta</p>
+          <a href="tel:+351962770586" class="btn-call">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012.18 2H5.1a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+            </svg>
+            +351 962 770 586
+          </a>
+        </div>
+      </div>
+
+      <div class="online-schedule fade-up">
+        <h3>Envie uma Mensagem</h3>
+        <form id="contactForm" onsubmit="submitForm(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nome">Nome</label>
+              <input type="text" id="nome" name="nome" placeholder="O seu nome">
+            </div>
+            <div class="form-group">
+              <label for="sobrenome">Sobrenome</label>
+              <input type="text" id="sobrenome" name="sobrenome" placeholder="Sobrenome">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email <span style="color:var(--wine)">*</span></label>
+            <input type="email" id="email" name="email" placeholder="o.seu@email.com" required>
+          </div>
+          <div class="form-group">
+            <label for="mensagem">Mensagem</label>
+            <textarea id="mensagem" name="mensagem" placeholder="Descreva a sua situação..."></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Enviar Mensagem</button>
+          <p class="form-success" id="formSuccess">✓ Obrigado pelo envio!</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="contacto-bg"></div>
+  <div class="contacto-inner">
+    <div class="contacto-info fade-up">
+      <p class="section-label">Localização</p>
+      <h2 class="section-title light">Contacto</h2>
+      <div class="divider gold"></div>
+
+      <div class="contacto-detail">
+        <p class="label">Telefone</p>
+        <a href="tel:+351962770586">+351 962 770 586</a>
+      </div>
+      <div class="contacto-detail">
+        <p class="label">Endereço</p>
+        <p>Rua de Grijó, nº 26, salas 1 a 3</p>
+        <p>4150-384 Porto — Portugal</p>
+      </div>
+      <div class="contacto-detail">
+        <p class="label">E-mail</p>
+        <a href="mailto:ritaferreirasilva-4030p@adv.oa.pt">ritaferreirasilva-4030p@adv.oa.pt</a>
+      </div>
+    </div>
+    <div style="position:relative; z-index:1; background: var(--white);">
+      <iframe
+        class="map-wrap"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3003.8!2d-8.6376!3d41.1581!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2464d935b90d51%3A0x3dbea6e4e9ce52bc!2sRua%20de%20Grij%C3%B3%2026%2C%204150-384%20Porto!5e0!3m2!1spt!2spt!4v1699000000000"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="Localização do escritório">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Rita Ferreira Silva — Advogada &nbsp;|&nbsp; Inscrita na Ordem dos Advogados</p>
+</footer>
+
+<script>
+  // Mobile menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+
+  hamburger.addEventListener('click', () => {
+    mobileNav.classList.toggle('open');
+  });
+
+  function closeMobile() {
+    mobileNav.classList.remove('open');
+  }
+
+  // Scroll animations
+  const fadeEls = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  fadeEls.forEach(el => observer.observe(el));
+
+  // Stagger cards within grids
+  document.querySelectorAll('.abordagem-cards .fade-up, .areas-grid .fade-up').forEach((el, i) => {
+    el.style.transitionDelay = (i * 0.12) + 's';
+  });
+
+  // Form submit
+  function submitForm(e) {
+    e.preventDefault();
+    const btn = document.querySelector('.btn-submit');
+    btn.textContent = 'A enviar...';
+    btn.disabled = true;
+    setTimeout(() => {
+      document.getElementById('contactForm').reset();
+      document.getElementById('formSuccess').style.display = 'block';
+      btn.textContent = 'Enviar Mensagem';
+      btn.disabled = false;
+    }, 1200);
+  }
+
+  // Nav shadow on scroll
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    if (window.scrollY > 60) {
+      nav.style.background = 'rgba(10,2,8,0.98)';
+    } else {
+      nav.style.background = 'rgba(10,2,8,0.95)';
+    }
+  });
+</script>
+</body>
+</html>
