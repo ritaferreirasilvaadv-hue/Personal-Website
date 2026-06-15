@@ -857,8 +857,8 @@
     <div class="hero-rule"><span>Advogada</span></div>
     <h1 class="hero-heading">
       Soluções jurídicas sólidas para<br>
-      <em>proteger o que mais importa:</em><br>
-      a sua família e os seus negócios
+      proteger o que mais importa:<br>
+      <em>a sua família e os seus negócios</em>
     </h1>
     <div class="hero-tags">
       <span class="hero-tag">Direito Civil</span>
@@ -1094,6 +1094,56 @@
   <p>© 2025 Rita Ferreira Silva — Advogada &nbsp;|&nbsp; Inscrita na Ordem dos Advogados</p>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  const EMAILJS_PUBLIC_KEY = 'oMx_ia7637AkqR5R0';
+  const EMAILJS_SERVICE_ID = 'service_66dgufd'; 
+  const EMAILJS_TEMPLATE_ID = 'template_kixo31s';
+
+  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+  function submitForm(e) {
+  e.preventDefault();
+  const btn = document.querySelector('.btn-submit');
+  const successMsg = document.getElementById('formSuccess');
+
+  const nome = document.getElementById('nome').value.trim();
+  const sobrenome = document.getElementById('sobrenome').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const mensagem = document.getElementById('mensagem').value.trim();
+
+  const nomeCompleto = sobrenome ? `${nome} ${sobrenome}` : nome;
+
+  const templateParams = {
+    from_name: nomeCompleto,
+    name: nomeCompleto,
+    title: nomeCompleto,
+    reply_to: email,
+    message: mensagem
+  };
+
+  btn.textContent = 'A enviar...';
+  btn.disabled = true;
+  successMsg.style.display = 'none';
+
+  emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+    .then(() => {
+      document.getElementById('contactForm').reset();
+      successMsg.textContent = '✓ Obrigado pelo envio!';
+      successMsg.style.display = 'block';
+    })
+    .catch((err) => {
+      successMsg.textContent = '✗ Ocorreu um erro. Tente novamente.';
+      successMsg.style.display = 'block';
+      console.error('EmailJS error:', err);
+    })
+    .finally(() => {
+      btn.textContent = 'Enviar Mensagem';
+      btn.disabled = false;
+    });
+}
+</script>
+
 <script>
   // Mobile menu
   const hamburger = document.getElementById('hamburger');
@@ -1126,20 +1176,6 @@
   document.querySelectorAll('.abordagem-cards .fade-up, .areas-grid .fade-up').forEach((el, i) => {
     el.style.transitionDelay = (i * 0.12) + 's';
   });
-
-  // Form submit
-  function submitForm(e) {
-    e.preventDefault();
-    const btn = document.querySelector('.btn-submit');
-    btn.textContent = 'A enviar...';
-    btn.disabled = true;
-    setTimeout(() => {
-      document.getElementById('contactForm').reset();
-      document.getElementById('formSuccess').style.display = 'block';
-      btn.textContent = 'Enviar Mensagem';
-      btn.disabled = false;
-    }, 1200);
-  }
 
   // Nav shadow on scroll
   window.addEventListener('scroll', () => {
